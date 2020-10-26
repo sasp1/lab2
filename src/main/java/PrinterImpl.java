@@ -3,11 +3,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
 
     ArrayList<String> currentSessions = new ArrayList<>();
+
 
     public PrinterImpl() throws RemoteException { }
 
@@ -112,7 +112,8 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
     }
 
     @Override
-    public String login(String password) {
+    public String login(String inputUsername, String inputPassword) {
+
         try {
             File file = new File("password.txt");
             FileReader fr = new FileReader(file);
@@ -121,10 +122,11 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
             while((line = br.readLine())!=null){
                 String[] parts = line.split(":");
 
-                String salt = parts[0];
-                String encryptedPassword = parts[1];
+                String username = parts[0];
+                String salt = parts[1];
+                String encryptedPassword = parts[2];
 
-                if (Secure.getSecurePassword(password, Base64.getDecoder().decode(salt)).equals(encryptedPassword)) {
+                if (inputUsername.equals(username) && Secure.getSecurePassword(inputPassword, Base64.getDecoder().decode(salt)).equals(encryptedPassword)) {
                     System.out.println("A login request was granted");
                     String session = Base64.getEncoder().encodeToString(Secure.getSalt());
                     currentSessions.add(session);
