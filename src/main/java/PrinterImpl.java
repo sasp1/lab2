@@ -4,7 +4,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Base64;
 import java.util.HashMap;
 
-public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
+public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
 
     HashMap<String, String> currentSessionsToUsername = new HashMap<>();
 
