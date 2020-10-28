@@ -24,6 +24,7 @@ public class Client {
         System.out.println();
         // LOG IN GRANTED -- see the passwords that can be used in "the_passwords_in_plain_text
         login("neymar", "123456");
+//        System.out.println(printer.start(session));
         System.out.println(printer.print("myfile.pdf", "HP-officejet-printer",session));
     }
 
