@@ -4,7 +4,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Base64;
 
-public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
+public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
 
     ArrayList<String> currentSessions = new ArrayList<>();
 
@@ -13,10 +13,12 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
 
     @Override
     public String print(String filename, String printer, String session) {
+        System.out.println("what");
+
         if (!currentSessions.contains(session)) {
             return "You are not authorized to this command";
         } else {
-            String result = "Printing " + filename + " on printer " + printer+"\n";
+            String result = "Printing " + filename + " on printer " + printer;
             System.out.println(result);
             return result;
         }
@@ -28,7 +30,7 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
             return "You are not authorized to this command";
         } else {
             String result = "JOB\tFILENAME\n323\t02239_lab1.pdf\n324\t02233_lab1.pdf" +
-                    "\n325\tinternet-cat.png\n326\tmy-credit-card-details.pdf\n327\tdata-security.pdf\n";
+                    "\n325\tinternet-cat.png\n326\tmy-credit-card-details.pdf\n327\tdata-security.pdf";
             System.out.println(result);
             return result;
         }
@@ -39,7 +41,7 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
         if (!currentSessions.contains(session)) {
             return "You are not authorized to this command";
         } else {
-            String result = "Moving job " + job + " to the top of the queue on printer " + printer + "...\nDone!\n";
+            String result = "Moving job " + job + " to the top of the queue on printer " + printer + "...\nDone!";
             System.out.println(result);
             return result;
         }
@@ -50,7 +52,7 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
         if (!currentSessions.contains(session)) {
             return "You are not authorized to this command";
         } else {
-            String result = "Starting print server...\n";
+            String result = "Starting print server...";
             System.out.println(result);
             return result;
         }
@@ -61,7 +63,7 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
         if (!currentSessions.contains(session)) {
             return "You are not authorized to this command";
         } else {
-            String result = "Stopping print server...\n";
+            String result = "Stopping print server...";
             System.out.println(result);
             return result;
         }
@@ -72,7 +74,7 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
         if (!currentSessions.contains(session)) {
             return "You are not authorized to this command";
         } else {
-            String result = "Restart initiated...\nPrint queue cleared...\nRebooting...\n";
+            String result = "Restart initiated...\nPrint queue cleared...\nRebooting...";
             System.out.println(result);
             return result;
         }
@@ -83,7 +85,7 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
         if (!currentSessions.contains(session)) {
             return "You are not authorized to this command";
         } else {
-            String result = "Status of printer " + printer + ": Online and available.\n";
+            String result = "Status of printer " + printer + ": Online and available.";
             System.out.println(result);
             return result;
         }
@@ -94,7 +96,7 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
         if (!currentSessions.contains(session)) {
             return "You are not authorized to this command";
         } else {
-            String result = parameter + " = " + "TRUE\n";
+            String result = parameter + " = " + "TRUE";
             System.out.println(result);
             return result;
         }
@@ -105,7 +107,7 @@ public class PrinterImpl extends UnicastRemoteObject implements PrinterI {
         if (!currentSessions.contains(session)) {
             return "You are not authorized to this command";
         } else {
-            String result = "Setting parameter " + parameter + " equal to " + value + "...\nDone!\n";
+            String result = "Setting parameter " + parameter + " equal to " + value + "...\nDone!";
             System.out.println(result);
             return result;
         }
