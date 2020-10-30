@@ -1,3 +1,5 @@
+package Server;
+
 import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -29,7 +31,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
         } else {
             String result = "JOB\tFILENAME\n323\t02239_lab1.pdf\n324\t02233_lab1.pdf" +
                     "\n325\tinternet-cat.png\n326\tmy-credit-card-details.pdf\n327\tdata-security.pdf\n";
-            System.out.println(result + " called by: " + currentSessionsToUsername.get(session));
+            System.out.println(result + "called by: " + currentSessionsToUsername.get(session));
             return result;
         }
     }
@@ -40,7 +42,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
             return "You are not authorized to this command";
         } else {
             String result = "Moving job " + job + " to the top of the queue on printer " + printer + "...\nDone!\n";
-            System.out.println(result + " called by: " + currentSessionsToUsername.get(session));
+            System.out.println(result + "called by: " + currentSessionsToUsername.get(session));
             return result;
         }
     }
@@ -51,7 +53,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
             return "You are not authorized to this command";
         } else {
             String result = "Starting print server...\n";
-            System.out.println(result + " called by: " + currentSessionsToUsername.get(session));
+            System.out.println(result + "called by: " + currentSessionsToUsername.get(session));
             return result;
         }
     }
@@ -62,7 +64,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
             return "You are not authorized to this command";
         } else {
             String result = "Stopping print server...\n";
-            System.out.println(result + " called by: " + currentSessionsToUsername.get(session));
+            System.out.println(result + "called by: " + currentSessionsToUsername.get(session));
             return result;
         }
     }
@@ -73,7 +75,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
             return "You are not authorized to this command";
         } else {
             String result = "Restart initiated...\nPrint queue cleared...\nRebooting...\n";
-            System.out.println(result + " called by: " + currentSessionsToUsername.get(session));
+            System.out.println(result + "called by: " + currentSessionsToUsername.get(session));
             return result;
         }
     }
@@ -84,7 +86,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
             return "You are not authorized to this command";
         } else {
             String result = "Status of printer " + printer + ": Online and available.\n";
-            System.out.println(result + " called by: " + currentSessionsToUsername.get(session));
+            System.out.println(result + "called by: " + currentSessionsToUsername.get(session));
             return result;
         }
     }
@@ -95,7 +97,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
             return "You are not authorized to this command";
         } else {
             String result = parameter + " = " + "TRUE\n";
-            System.out.println(result + " called by: " + currentSessionsToUsername.get(session));
+            System.out.println(result + "called by: " + currentSessionsToUsername.get(session));
             return result;
         }
     }
@@ -106,7 +108,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
             return "You are not authorized to this command";
         } else {
             String result = "Setting parameter " + parameter + " equal to " + value + "...\nDone!\n";
-            System.out.println(result + " called by: " + currentSessionsToUsername.get(session));
+            System.out.println(result + "called by: " + currentSessionsToUsername.get(session));
             return result;
         }
     }
@@ -115,7 +117,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String login(String inputUsername, String inputPassword) {
 
         try {
-            File file = new File("password.txt");
+            File file = new File("src/main/java/Server/password.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line;
