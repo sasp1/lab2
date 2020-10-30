@@ -12,14 +12,14 @@ javac -cp src/main/java src/main/java/Server/PrintServer.java
 ```
 To start the server
 ```
-java -cp src/main/java Server/PrintServer
+java -cp src/main/java Server.PrintServer
 ```
 it should prompt the message
 ```
 Print server registered
 ```
 ***
-## Client.Client
+## Client
 
 Open a terminal and navigate to the ```src``` folder.
 
@@ -29,9 +29,9 @@ javac -cp src/main/java src/main/java/Client/Client.java
 ``` 
 To start a client
 ```
-java -cp src/main/java Client/Client
+java -cp src/main/java Client.Client
 ```
-it should promt the messages 
+it should prompt the messages 
 
 ```
 Please enter credentials to login...
