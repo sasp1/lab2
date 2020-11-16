@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
 
     HashMap<String, User> currentSessionsToUser = new HashMap<>();
-    HashMap<Integer, ArrayList<String>> userPolicy = new HashMap<>();
+    HashMap<String, ArrayList<String>> userPolicy = new HashMap<>();
 
     public PrinterImpl() throws RemoteException {
         try {
@@ -22,10 +22,10 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
             String line;
             while((line = br.readLine())!=null){
                 String[] parts = line.split(",");
-                int role = Integer.parseInt(parts[0]);
-                userPolicy.put(role, new ArrayList<>());
+                String user = parts[0];
+                userPolicy.put(user, new ArrayList<>());
                 for (int i = 1; i < parts.length; i++) {
-                    userPolicy.get(role).add(parts[i]);
+                    userPolicy.get(user).add(parts[i]);
                 }
             }
             fr.close();
@@ -39,7 +39,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String print(String filename, String printer, String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("print")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("print")) {
             String result = "Printing " + filename + " on printer " + printer+"\n";
             System.out.println(result + "called by the user: " + user.name+"\n");
 
@@ -54,7 +54,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String queue(String printer,  String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("queue")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("queue")) {
             String result = "JOB\tFILENAME\n323\t02239_lab1.pdf\n324\t02233_lab1.pdf" +
                     "\n325\tinternet-cat.png\n326\tmy-credit-card-details.pdf\n327\tdata-security.pdf\n";
             System.out.println(result + "called by: " + user.name+"\n");
@@ -69,7 +69,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String topQueue(String printer, int job, String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("top queue")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("top queue")) {
             String result = "Moving job " + job + " to the top of the queue on printer " + printer + "...\nDone!\n";
             System.out.println(result + "called by: " + user.name+"\n");
             return result;
@@ -82,7 +82,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String start(String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("start")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("start")) {
             String result = "Starting print server...\n";
             System.out.println(result + "called by: " + user.name+"\n");
             return result;
@@ -95,7 +95,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String stop(String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("stop")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("stop")) {
             String result = "Stopping print server...\n";
             System.out.println(result + "called by: " + user.name+"\n");
             return result;
@@ -108,7 +108,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String restart(String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("restart")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("restart")) {
             String result = "Restart initiated...\nPrint queue cleared...\nRebooting...\n";
             System.out.println(result + "called by: " + user.name+"\n");
             return result;
@@ -121,7 +121,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String status(String printer, String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("status")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("status")) {
             String result = "Status of printer " + printer + ": Online and available.\n";
             System.out.println(result + "called by: " + user.name+"\n");
             return result;
@@ -134,7 +134,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String readConfig(String parameter, String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("read configuration")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("read configuration")) {
             String result = parameter + " = " + "TRUE\n";
             System.out.println(result + "called by: " + user.name+"\n");
             return result;
@@ -147,7 +147,7 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
     public String setConfig(String parameter, String value, String session) {
         User user = currentSessionsToUser.get(session);
 
-        if (!(user == null) && userPolicy.get(user.role).contains("set configuration")) {
+        if (!(user == null) && userPolicy.get(user.name).contains("set configuration")) {
             String result = "Setting parameter " + parameter + " equal to " + value + "...\nDone!\n";
             System.out.println(result + "called by: " + user.name+"\n");
             return result;
@@ -169,9 +169,8 @@ public class PrinterImpl extends UnicastRemoteObject implements IPrinter {
                 String username = parts[0];
                 String salt = parts[1];
                 String encryptedPassword = parts[2];
-                int role = Integer.parseInt(parts[3]);
 
-                User user = new User(username, role);
+                User user = new User(username);
 
                 if (inputUsername.equals(username) && Secure.getSecurePassword(inputPassword, Base64.getDecoder().decode(salt)).equals(encryptedPassword)) {
                     System.out.println("A login request was granted\n");

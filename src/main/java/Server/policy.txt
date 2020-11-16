@@ -1,4 +1,7 @@
-0,print,queue,top queue,start,stop,restart,status,read configuration,set configuration
-1,start,stop,restart,status,read configuration,set configuration
-2,print,queue,top queue,restart
-3,print,queue
+Alice,print,queue,top queue,start,stop,restart,status,read configuration,set configuration
+Bob,start,stop,restart,status,read configuration,set configuration
+Cecilia,print,queue,top queue,restart
+David,print,queue
+Erica,print,queue
+Fred,print,queue
+George,print,queue

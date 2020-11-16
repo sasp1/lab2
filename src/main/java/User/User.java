@@ -3,10 +3,7 @@ package User;
 public class User {
 
     public String name;
-    public int role;
-
-    public User(String name, int role){
+    public User(String name){
         this.name = name;
-        this.role = role;
     }
 }
