@@ -55,6 +55,7 @@ public class Client {
                 break;
             } else {
                 chooseAction(input);
+                Thread.sleep(1000);
             }
         }
     }
