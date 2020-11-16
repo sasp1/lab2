@@ -44,26 +44,26 @@ of the client files and just run the start client command.
 
 The solution comes with four users
 * user 1
-    - *username:* ronaldo
+    - *username:* Alice // (Manager)
     - *password:* smoky android spearman afar
 * user 2
-    - *username:* messi
+    - *username:* Bob // (Service Technician)
     - *password:* financial quote suffix parole
 * user 3
-    - *username:* neymar
+    - *username:* Cecilia // (Power User)
     - *password:* petal cuddly unhook overreach
 * user 4
-    - *username:* ramos
+    - *username:* David // (Regular User)
     - *password:* balance prone applaud crayon
 
 **Important(!)**
 
-Make sure you do not copy/enter the white spaces infront or after the password
+Make sure you do not copy/enter the white spaces in front or after the username/password
 
-A succesful login attempt is shown below
+A successful login attempt is shown below
 
 ```
-Username: ronaldo
+Username: Alice
 Password: smoky android spearman afar
 Successfully logged in!
 
