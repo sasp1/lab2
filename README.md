@@ -47,14 +47,27 @@ The solution comes with four users
     - *username:* Alice // (Manager)
     - *password:* smoky android spearman afar
 * user 2
-    - *username:* Bob // (Service Technician)
+    - *username:* George // (Service Technician)
     - *password:* financial quote suffix parole
 * user 3
     - *username:* Cecilia // (Power User)
     - *password:* petal cuddly unhook overreach
 * user 4
+    - *username:* Ida // (Power User)
+    - *password:* Lets run away
+* user 5
     - *username:* David // (Regular User)
     - *password:* balance prone applaud crayon
+* user 6
+    - *username:* Henry // (Regular User)
+    - *password:* Duis aute irure dolor
+* user 7
+    - *username:* Erica // (Regular User)
+    - *password:* DS 02239 FTW
+* user 8
+    - *username:* Fred // (Regular User)
+    - *password:* 21 sah esaelp ew nac
+
 
 **Important(!)**
 
