@@ -53,7 +53,7 @@ The solution comes with four users
     - *username:* Cecilia // (Power User)
     - *password:* petal cuddly unhook overreach
 * user 4
-    - *username:* Ida // (Power user)
+    - *username:* Ida // (Power User)
     - *password:* Lets run away
 * user 5
     - *username:* David // (Regular User)
@@ -61,6 +61,13 @@ The solution comes with four users
 * user 6
     - *username:* Henry // (Regular User)
     - *password:* Duis aute irure dolor
+* user 7
+    - *username:* Erica // (Regular User)
+    - *password:* DS 02239 FTW
+* user 8
+    - *username:* Fred // (Regular User)
+    - *password:* 21 sah esaelp ew nac
+
 
 
 **Important(!)**
